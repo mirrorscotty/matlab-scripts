@@ -1,4 +1,9 @@
-data = csvread('data-test2.csv', 1, 1);
+%data = csvread('data-test2.csv', 1, 1);
+data = csvread('data_40-50-60-80_revised.csv', 1, 2);
+
+%Remove Outliers
+data([11 41 29],:) = [];
+
 T = data(:,2);
 Xi = data(:,3);
 Xf = data(:,4);
@@ -41,3 +46,5 @@ fprintf('T^2      \t%.4g\t%.4g\t%.4g\t%g\n', b(3), bint(3,1), bint(3,2), sr.tsta
 fprintf('Xf-Xi    \t%.4g\t%.4g\t%.4g\t%g\n', b(4), bint(4,1), bint(4,2), sr.tstat.pval(4));
 fprintf('(Xf-Xi)^2\t%.4g\t%.4g\t%.4g\t%g\n', b(5), bint(5,1), bint(5,2), sr.tstat.pval(5));
 fprintf('tf       \t%.4g\t%.4g\t%.4g\t%g\n', b(6), bint(6,1), bint(6,2), sr.tstat.pval(6));
+
+[extr, loc] = max(sr.studres)
