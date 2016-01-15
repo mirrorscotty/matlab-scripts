@@ -85,15 +85,15 @@ fprintf('tf\t%.4g\t%.4g\t%.4g\t%g\n', b(4), bint(4,1), bint(4,2), sr.tstat.pval(
 
 % Volume Model
 y = Vsolid;
-X = [T.^2, Vwater, Vwater.^2, tf];
+X = [Vwater, Vwater.^2, tf];
 sv = regstats(y, X, 'linear', 'all');
 [b, bint] = regress(y, [ones(length(T), 1), X]);
 
 fprintf('\nVolume Model\t R^2 = %g\n', sr.rsquare);
 fprintf('Intercept\tb\tbint-\tbint+\tp-value\n');
 fprintf('Constant \t%.4g\t%.4g\t%.4g\t%.4g\n', b(1), bint(1,1), bint(1,2), sv.tstat.pval(1));
-fprintf('T^2        \t%.4g\t%.4g\t%.4g\t%g\n', b(2), bint(2,1), bint(2,2), sv.tstat.pval(2));
-fprintf('Vwater      \t%.4g\t%.4g\t%.4g\t%g\n', b(3), bint(3,1), bint(3,2), sv.tstat.pval(3));
-fprintf('Vwater^2    \t%.4g\t%.4g\t%.4g\t%g\n', b(4), bint(4,1), bint(4,2), sv.tstat.pval(4));
-fprintf('tf       \t%.4g\t%.4g\t%.4g\t%g\n', b(5), bint(5,1), bint(5,2), sv.tstat.pval(5));
+%fprintf('T^2        \t%.4g\t%.4g\t%.4g\t%g\n', b(2), bint(2,1), bint(2,2), sv.tstat.pval(2));
+fprintf('Vwater      \t%.4g\t%.4g\t%.4g\t%g\n', b(2), bint(2,1), bint(2,2), sv.tstat.pval(2));
+fprintf('Vwater^2    \t%.4g\t%.4g\t%.4g\t%g\n', b(3), bint(3,1), bint(3,2), sv.tstat.pval(3));
+fprintf('tf       \t%.4g\t%.4g\t%.4g\t%g\n', b(4), bint(4,1), bint(4,2), sv.tstat.pval(4));
 %fprintf('tf       \t%.4g\t%.4g\t%.4g\t%g\n', b(6), bint(6,1), bint(6,2), sr.tstat.pval(6));
